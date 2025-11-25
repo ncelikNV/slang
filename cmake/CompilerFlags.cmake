@@ -220,7 +220,7 @@ function(set_default_compile_options target)
             # instead (`-shared-libsan`).
             target_compile_options(
                 ${target}
-                PRIVATE -fsanitize=address -shared-libsan
+                PRIVATE -fsanitize=address,undefined -shared-libsan
             )
             target_link_options(
                 ${target}

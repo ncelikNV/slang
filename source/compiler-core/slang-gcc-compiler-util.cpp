@@ -631,7 +631,9 @@ static SlangResult _parseGCCFamilyLine(
     if (options.targetType != SLANG_OBJECT_CODE)
     {
 #if SLANG_CLANG || SLANG_GCC
-        cmdLine.addArg("-fsanitize=address");
+        // Assume ASan was enabled through the SLANG_ENABLE_ASAN CMake option, meaning UBSan was
+        // enabled as well.
+        cmdLine.addArg("-fsanitize=address,undefined");
 #endif
 #if SLANG_CLANG
         cmdLine.addArg("-shared-libsan");
